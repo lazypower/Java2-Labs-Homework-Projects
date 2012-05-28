@@ -27,7 +27,7 @@ public class Lab5a extends JApplet implements ActionListener
     private JComboBox jcboTimeStyle = new JComboBox(
             new String[] { "Full", "LONG", "MEDIUM", "SHORT"});
     
-    private Locale lcale = Locale.US;
+    private Locale locale = Locale.US;
     private String timeZone = TimeZone.getDefault().getID();
     
     private int dateStyle = DateFormat.FULL;
@@ -83,6 +83,38 @@ public class Lab5a extends JApplet implements ActionListener
        frame.setLocationRelativeTo(null);
        frame.setVisible(true);
        
+    }
+    
+    public void actionPerformed(ActionEvent e) 
+    {
+        if (e.getSource() == jcboLocale) 
+        {
+            locale = availableLocales[jcboLocale.getSelectedIndex()];
+        }
+        else if (e.getSource() == jcboTimeZones)
+        {
+            timeZone = availableTimeZones[jcboTimeZones.getSelectedIndex()];
+        }
+        else if (e.getSource() == jcboDateStyle)
+        {
+            dateStyle = jcboDateStyle.getSelectedIndex();
+        }
+        else if (e.getSource() == jcboTimeStyle)
+        {
+            timeStyle = jcboTimeStyle.getSelectedIndex();
+        }
+        
+        dateFormat = DateFormat.getDateInstance(dateStyle, locale);
+        timeFormat = DateFormat.getTimeInstance(timeStyle, locale);
+        
+        dateFormat.setTimeZone(TimeZone.getTimeZone(timeZone));
+        timeFormat.setTimeZone(TimeZone.getTimeZone(timeZone));
+        
+        jtfDate.setText(dateFormat.format(new Date()));
+        jtfTime.setText(dateFormat.format(new Date()));
+        
+        
+        
     }
 
 }
