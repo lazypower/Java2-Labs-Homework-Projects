@@ -61,6 +61,7 @@ public void actionPerformed(ActionEvent e)
         System.out.println("urlString " + urlString);
         
         // p 998 display html file
+        jep.setPage(url);
     }
     catch (IOException ex) {
         System.out.println(ex);
@@ -80,7 +81,7 @@ public void hyperlinkUpdate(HyperlinkEvent e)
     public static void main(String[] args) 
     {
         JFrame frame = new JFrame("some title");
-        Exercise30_11 applet = new Exercise30_11();
+        Exercise31_11 applet = new Exercise31_11();
         
         frame.getContentPane().add(applet, BorderLayout.CENTER);
         applet.init();
