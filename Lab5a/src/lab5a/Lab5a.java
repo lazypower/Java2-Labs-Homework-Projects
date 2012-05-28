@@ -74,7 +74,15 @@ public class Lab5a extends JApplet implements ActionListener
     
     public static void main(String[] args) 
     {
-        
+       JFrame frame = new JFrame("Show Date and TIme");
+       Lab5a applet = new Lab5a();
+       
+       frame.add(applet, BorderLayout.CENTER);
+       frame.setSize(450, 150);
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       frame.setLocationRelativeTo(null);
+       frame.setVisible(true);
+       
     }
 
 }
