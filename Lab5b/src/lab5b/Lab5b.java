@@ -99,7 +99,97 @@ public class Lab5b extends JApplet implements MemoryListener
 
     class MemoryEvent extends EventObject
     {
+        // page 1065 
+        //Runtime runtime = 
         
+        public MemoryEvent(Object o)
+        {
+            //iniitalize the parent of this class with the argumen to
+        }
+        
+        public long freeMemory() 
+        {
+            //return free memory - page 1065
+        }
+        
+        public long totalMemory() 
+        {
+            //return total memory page 1065
+        }
+        
+    }
+    
+    class MemroyWatch implements Runnable 
+    {
+        private int highLimit = 700000;
+        private int lowLimit = 200000;
+        
+        //Runtime runtime 
+        //page 1065
+        
+        private Thread thread;
+        private transiet Vector memoryListeners;
+        
+        public MemoryWatch() 
+        {
+            thread = new Thread(this);
+            thread.start();
+        }
+        
+        public void run()
+        {
+            while (true) 
+            {
+                try 
+                {
+                    Thread.sleep(1000);
+                }
+                catch(Exception e)
+                { }
+                
+                System.out.println("Total Memory " + runtime.totalMemory());
+                System.out.println("Free Memory " + runtime.freeMemory());
+                
+                if ( runtime.freeMemory > highLimit)
+                {
+                    MemoryEvent e = new MemoryEvent(this);
+                    
+                    fireSufficientMemory(e);
+                }
+                
+                if ( runtime.freeMemory < lowLimit)
+                {
+                    MemoryEvent e = new MemoryEvent(this);
+                    
+                    fireInsufficientMemory(e);
+                }
+            }
+        }
+        
+        public static void main(String[] args) 
+        {
+            MemoryWatch memoryWatch1 = new MemoryWatch();
+        }
+        
+        public void setHighLimit(int newHighLimit)
+        {
+            highLimit = newHighLimit;
+        }
+        
+        public void setLowLimit(int newLowLimit)
+        {
+            lowLimit = newLowLimit;
+        }
+        
+        public int getHighLimit()
+        {
+            return highLimit;
+        }
+        
+        public int getLowLimit()
+        {
+            return lowLimit;
+        }
     }
     
 }
