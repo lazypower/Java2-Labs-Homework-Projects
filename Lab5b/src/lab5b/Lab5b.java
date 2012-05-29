@@ -89,4 +89,17 @@ public class Lab5b extends JApplet implements MemoryListener
         sufficientMemory(e);
     }
     
+    
+    public interface MemoryListener extends EventListener
+    {
+        public void sufficientMemory(MemoryEvent e);
+        public void InsufficientMemory(MemoryEvent e);
+        
+    }
+
+    class MemoryEvent extends EventObject
+    {
+        
+    }
+    
 }
