@@ -119,16 +119,18 @@ public class Lab5b extends JApplet implements MemoryListener
         
     }
     
-    class MemroyWatch implements Runnable 
+    public class MemoryWatch implements Runnable 
     {
         private int highLimit = 700000;
         private int lowLimit = 200000;
         
         //Runtime runtime 
         //page 1065
+        Runtime runtime = Runtime.getRuntime();
+        
         
         private Thread thread;
-        private transiet Vector memoryListeners;
+        private transient Vector memoryListeners;
         
         public MemoryWatch() 
         {
@@ -150,14 +152,14 @@ public class Lab5b extends JApplet implements MemoryListener
                 System.out.println("Total Memory " + runtime.totalMemory());
                 System.out.println("Free Memory " + runtime.freeMemory());
                 
-                if ( runtime.freeMemory > highLimit)
+                if ( runtime.freeMemory() > highLimit)
                 {
                     MemoryEvent e = new MemoryEvent(this);
                     
                     fireSufficientMemory(e);
                 }
                 
-                if ( runtime.freeMemory < lowLimit)
+                if ( runtime.freeMemory() < lowLimit)
                 {
                     MemoryEvent e = new MemoryEvent(this);
                     
@@ -168,7 +170,7 @@ public class Lab5b extends JApplet implements MemoryListener
         
         public static void main(String[] args) 
         {
-            MemoryWatch memoryWatch1 = new MemoryWatch();
+            MemoryWatch memorywatch = new MemoryWatch();
         }
         
         public void setHighLimit(int newHighLimit)
@@ -190,6 +192,58 @@ public class Lab5b extends JApplet implements MemoryListener
         {
             return lowLimit;
         }
+        
+        public synchronized void removeMoeryListener(MemoryListener l)
+        {
+            if(memoryListeners != null && memoryListeners.contains(l))
+            {
+                Vector v = (Vector) memoryListeners.clone();
+                v.removeElement(l);
+                memoryListeners = v;
+            }
+        }
+        
+        public synchronized void addMemoryListener(MemoryListener l)
+        {
+            Vector v = memoryListeners == null ? new Vector(2) : 
+                    (Vector) memoryListeners.clone();
+            if (!v.contains(l))
+            {
+                v.addElement(l);
+                memoryListeners = v;
+            }
+        }
+        
+        protected void fireSufficientMemory(MemoryEvent e)
+        {
+            if(memoryListeners != null)
+            {
+                Vector listeners = memoryListeners;
+                
+                int count = listeners.size();
+                for (int i = 0; i < count; i++)
+                {
+                    ((MemoryListener) listeners.elementAt(i)).sufficientMemory(e);
+                }
+            }
+        }
+        
+        
+        protected void fireInsufficentMemory(MemoryEvent e)
+        {
+            if(memoryListeners != null)
+            {
+                Vector listeners = memoryListeners;
+                
+                int count = listeners.size();
+                for (int i = 0; i < count; i++)
+                {
+                    ((MemoryListener) listeners.elementAt(i)).InsufficientMemory(e);
+                }
+            }
+        }
+        
+        
     }
     
 }
