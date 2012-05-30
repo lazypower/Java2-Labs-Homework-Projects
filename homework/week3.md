@@ -3,6 +3,7 @@
 ###What is thread.isAlive() method, and what does it tell you about the thread?*
 
  thread.isalive() will return a predicate value after testing to see if the thread is active. 
+
 cited: http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Thread.html
 
 ###Find out the difference between a deamon thread and a user thread.
@@ -18,5 +19,11 @@ Threads that are created without explicilty assigning the threadgroup in the con
 cited: http://www.ecst.csuchico.edu/~amk/foo/cscijava/tutorial/java/threads/group.htm
 
 ###What is the state of a thread when it blocks an I/O and the initial state of a thread after it is created and started?
+
+A thread will be put to sleep when it is in a "blocked I/O" state. A thread in the blocked state is waiting for a monitor lock to enter a syncrhonized block/method or reenter a synchronized block after calling Object.wait.  As a thread is created and started, it enters the "ready" state.
+
+cited: http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Thread.State.html
+
+
 
 
