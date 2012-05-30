@@ -1,0 +1,7 @@
+#VIM! no mas
+*.swp
+
+dist/*
+build/*
+nbproject/private/*
+build.xml
