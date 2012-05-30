@@ -32,4 +32,13 @@ A wait() only makes sense when there is also a notify(), so it's always about co
 cited: http://stackoverflow.com/questions/2779484/why-wait-should-always-be-in-synchronized-block
 
 
+1) b
+
+2) b,d,e
+
+3) d
+
+4) 
+
+
 
