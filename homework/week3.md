@@ -24,6 +24,12 @@ A thread will be put to sleep when it is in a "blocked I/O" state. A thread in t
 
 cited: http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Thread.State.html
 
+###Is it possible to call the wait() method in a non-synchronized block
+
+
+A wait() only makes sense when there is also a notify(), so it's always about communication between threads, and that needs synchronization to work correctly. One could argue that this should be implicit, but that would not really help.
+
+cited: http://stackoverflow.com/questions/2779484/why-wait-should-always-be-in-synchronized-block
 
 
 
