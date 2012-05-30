@@ -38,7 +38,39 @@ cited: http://stackoverflow.com/questions/2779484/why-wait-should-always-be-in-s
 
 3) d
 
-4) 
+4) c
+
+5) b
+
+6) a
+
+7) d
+
+8) b
+
+9) a,b,c,e
+
+10) a
+
+11) a,b,c,d
+
+12) a,b,c
+
+13) a,c,d
+
+14) a,b,c,d
+
+15)  d
+
+16) a,b,c,d
+
+17) a
+
+18) d
+
+19) a,c,d
+
+20) b
 
 
 
