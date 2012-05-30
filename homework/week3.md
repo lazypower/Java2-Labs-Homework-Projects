@@ -5,7 +5,7 @@
  thread.isalive() will return a predicate value after testing to see if the thread is active. 
 cited: http://docs.oracle.com/javase/1.4.2/docs/api/java/lang/Thread.html
 
-###Find out the difference between a deamone thred and a user thread.*
+###Find out the difference between a deamon thread and a user thread.
 
 In java, daemon threads are typically threads spawned from a user thread, and perform services for the calling thread. You can explicitly define a DaemonThread by calling the member setDaemon(true) on a thread object before it has started.  Some examples of daemon threads - Clock Handler, idle, GarbageCollector, screenUpdater.  The difference between the two types of threads is fairly straightforward: If the java runtime determines that the only threads running in an application are daemon threads the java runtime promptly closes the aplication. In order for an application to continue running, it must always have at least one live user thread. 
 
