@@ -1,9 +1,13 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# oh vim
+#vim! stop being messy
 *.swp
+
++ build/
++ dist/
++ nbproject/
+  build-impl.xml
+    + private/
+      + project.properties
+        + project.xml
+        + src/
+        + test/
+        + build.xml
